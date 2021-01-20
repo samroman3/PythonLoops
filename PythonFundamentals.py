@@ -1,3 +1,4 @@
+#Lists and Loops
 
 def has_lucky_number(nums):
     """Return whether the given list of numbers is lucky. A lucky list contains
@@ -35,10 +36,10 @@ def elementwise_greater_than(L, thresh):
     return [element > thresh for element in L ]
 
 
-    def menu_is_boring(meals):
-    """Given a list of meals served over some period of time, return True if the
-    same meal has ever been served two days in a row, and False otherwise.
-    """
+def menu_is_boring(meals):
+# """Given a list of meals served over some period of time, return True if the
+# same meal has ever been served two days in a row, and False otherwise.
+# """
 #     solution using memory
 #     prev = ""
 #     for i in meals:
@@ -89,3 +90,60 @@ def select_second(L):
         return None    
     else:
         return L[1]
+
+
+#Strings and Dictionaries
+
+#use this backslash \' to type singlequotes within singlequote strings.
+singlequote = '\'' 
+print('What\'s up?')
+
+# this backslash \" for doubleQuotes within doubleQuotes
+
+doubleQuotes = "\""
+print("That's \"cool\"")
+
+#normal backslash
+backslash = "\\" 
+#"\"
+print("Look, a mountain: /\\")
+
+
+#creates a newline within the string
+"\n"
+
+print("1\n2 3")
+#1
+#2 3
+
+#tripleqoutes create newlines by default when typing
+print("""hello
+world""")
+
+# Indexing
+planet = 'Pluto'
+planet[0]
+
+# Slicing
+planet[-3:]
+
+#Looping over strings:
+[char+'! ' for char in planet]
+
+#Strings are immutable
+
+# Searching for the first index of a substring
+claim = "Pluto is a planet!"
+claim.index('plan')
+#output: 11
+
+#str.split() turns a string into a list of smaller strings, breaking on whitespace by default. 
+#This is super useful for taking you from one big string to a list of words.
+
+words = claim.split()
+print(words)
+
+datestr = '1956-01-31'
+year, month, day = datestr.split('-')
+print(year,month,day)
+
