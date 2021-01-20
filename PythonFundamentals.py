@@ -221,3 +221,52 @@ print(allKeys)
 
 for planet,initial in planet_to_initial.items():
     print("{} begins with \"{}\"".format(planet,initial))
+
+
+
+def is_valid_zip(zip_code):
+    """Returns whether the input string is a valid (5 digit) zip code
+    """
+    return zip_code.isdigit() and len(zip_code) == 5
+
+def word_search(doc_list, keyword):
+    """
+    Takes a list of documents (each document is a string) and a keyword. 
+    Returns list of the index values into the original list for all documents 
+    containing the keyword.
+
+    Example:
+    doc_list = ["The Learn Python Challenge Casino.", "They bought a car", "Casinoville"]
+    >>> word_search(doc_list, 'casino')
+    >>> [0]
+    """
+    list = []
+    for i, doc in enumerate(doc_list):
+        #split string into list of words
+        words = doc.split()
+        #remove unwanted punctuation and lowercase all characters
+        readyForSearch = [word.strip(",.").lower() for word in words]
+        #if it matches keyword add index to return list
+        if keyword.lower() in readyForSearch:
+            list.append(i)
+    return list
+
+doc_list = ["The Learn Python Challenge Casino.", "They bought a car", "Casinoville"]
+
+word_search(doc_list, "casino")
+
+def multi_word_search(doc_list, keywords):
+    """
+    Takes list of documents (each document is a string) and a list of keywords.  
+    Returns a dictionary where each key is a keyword, and the value is a list of indices
+    (from doc_list) of the documents containing that keyword
+
+    >>> doc_list = ["The Learn Python Challenge Casino.", "They bought a car and a casino", "Casinoville"]
+    >>> keywords = ['casino', 'they']
+    >>> multi_word_search(doc_list, keywords)
+    {'casino': [0, 1], 'they': [1]}
+    """
+    dict = {}
+    for key in keywords:
+        dict[key] = word_search(doc_list,key)
+    return dict  
