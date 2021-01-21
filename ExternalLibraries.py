@@ -97,11 +97,3 @@ Unlike lists whitch do not allow indices as tuples"""
 
 # tensorflow, a Python library popularly used for deep learning. 
 # makes extensive use of operator overloading (the behavior desrcibing how ndarray interacts with operators).
-
-import tensorflow as tf
-# Create two constants, each with value 1
-a = tf.constant(1)
-b = tf.constant(1)
-# Add them together to get...
-print(a + b)
-

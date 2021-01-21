@@ -1,6 +1,7 @@
 #Imports
 
 import math
+from numpy import asarray
 
 print(type(math))
 
@@ -277,3 +278,64 @@ def multi_word_search(doc_list, keywords):
     for key in keywords:
         dict[key] = word_search(doc_list,key)
     return dict  
+
+
+
+#hands are lists of strings following rules of blackjack
+#here we write a helper function to make the next function cleaner
+def checkHand(hand):
+    aceCount = 0
+    handSum = 0
+    for card in hand:
+        if card in ['J','K','Q'] :
+            handSum += 10
+        elif card == "A":
+            aceCount += 1
+        else:
+             handSum += int(card) 
+
+#add aces for now: this is the smallest count we can get from this hand
+    handSum += aceCount
+# "Upgrade" aces from 1 to 11 as long as it helps us get closer to 21
+# without busting
+    while handSum + 10 <= 21 and aceCount > 0:
+        # Upgrade an ace from 1 to 11
+        handSum += 10
+        aceCount -= 1
+    return handSum
+        
+        
+            
+
+
+
+def blackjack_hand_greater_than(hand_1, hand_2):
+    """
+    Return True if hand_1 beats hand_2, and False otherwise.
+    
+    In order for hand_1 to beat hand_2 the following must be true:
+    - The total of hand_1 must not exceed 21
+    - The total of hand_1 must exceed the total of hand_2 OR hand_2's total must exceed 21
+    
+    Hands are represented as a list of cards. Each card is represented by a string.
+    
+    When adding up a hand's total, cards with numbers count for that many points. Face
+    cards ('J', 'Q', and 'K') are worth 10 points. 'A' can count for 1 or 11.
+    
+    When determining a hand's total, you should try to count aces in the way that 
+    maximizes the hand's total without going over 21. e.g. the total of ['A', 'A', '9'] is 21,
+    the total of ['A', 'A', '9', '3'] is 14.
+    
+    Examples:
+    >>> blackjack_hand_greater_than(['K'], ['3', '4'])
+    True
+    >>> blackjack_hand_greater_than(['K'], ['10'])
+    False
+    >>> blackjack_hand_greater_than(['K', 'K', '2'], ['3'])
+    False
+    """
+    hand1 = checkHand(hand_1)
+    hand2 = checkHand(hand_2)
+    
+    return hand1 <= 21 and (hand1 > hand2 or hand2 > 21)
+    
