@@ -1,4 +1,11 @@
-#Lists and Loops
+#Imports
+
+import math
+
+print(type(math))
+
+
+# #Lists and Loops
 
 def has_lucky_number(nums):
     """Return whether the given list of numbers is lucky. A lucky list contains
